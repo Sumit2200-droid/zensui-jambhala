@@ -1307,11 +1307,99 @@
             outline: 2px solid var(--light-green);
             outline-offset: 2px;
         }
+        /* Booking bar - styled to match provided design */
+        .booking-bar {
+            max-width: 1100px;
+            margin: 24px auto;
+            background: linear-gradient(180deg, rgba(248,246,240,0.98), rgba(253,252,250,0.98));
+            border: 1px solid rgba(11,59,44,0.06);
+            padding: 14px 18px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            box-shadow: 0 10px 28px rgba(11,59,44,0.06);
+        }
+
+        /* Floating Book Now for quick access on small devices */
+        .floating-book-btn { position: fixed; right: 20px; bottom: 24px; background: linear-gradient(135deg, var(--deep-green), var(--light-green)); color: #fff; padding: 12px 16px; border-radius: 999px; box-shadow: 0 12px 32px rgba(11,59,44,0.18); border: 2px solid rgba(212,175,55,0.12); z-index:1600; font-weight:700; cursor:pointer; }
+        @media (min-width: 880px) { .floating-book-btn { display: none; } }
+
+        .booking-bar-inner { display:flex; align-items:center; gap:12px; }
+        .booking-icon { width:40px; height:40px; display:flex; align-items:center; justify-content:center; background: #fff; border-radius:50%; font-size:18px; color:var(--deep-green); box-shadow: 0 6px 18px rgba(212,175,55,0.06); border:1px solid rgba(212,175,55,0.06); }
+        .booking-text { display:flex; flex-direction:column; gap:2px; }
+        .booking-title { font-weight:800; color:var(--deep-green); font-size:1.08rem; }
+        .booking-subtitle { font-size:0.95rem; color:var(--text-light); }
+
+        .booking-actions { display:flex; align-items:center; gap:12px; }
+        .book-btn.primary-book-btn { background: linear-gradient(135deg, var(--deep-green), var(--light-green)); color: #fff; padding: 12px 22px; border-radius: 12px; border: none; font-weight:800; box-shadow: 0 16px 36px rgba(11,59,44,0.18); cursor:pointer; }
+        .book-btn.primary-book-btn:hover { transform: translateY(-3px); }
+
+        @media (max-width: 720px) {
+            .booking-bar { flex-direction: column; align-items: stretch; gap: 10px; padding:12px; }
+            .booking-bar-inner { align-items:center; }
+            .booking-actions { justify-content: flex-end; }
+            .book-btn.primary-book-btn { width: 140px; align-self: flex-end; }
+        }
+
+        .booking-modal { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; z-index: 10050; }
+        .booking-modal.active { display: flex; }
+
+        .booking-modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.45); }
+
+        .booking-modal-content { position: relative; background: var(--white); color: var(--text-dark); width: min(540px, 96%); border-radius: 14px; padding: 18px; box-shadow: 0 30px 80px rgba(11,59,44,0.18); z-index: 10051; max-height: 92vh; overflow: visible; }
+
+        .modal-scroll { max-height: calc(92vh - 8px); overflow: auto; -webkit-overflow-scrolling: touch; -ms-overflow-style: none; scrollbar-width: none; }
+        .modal-scroll::-webkit-scrollbar { display: none; }
+
+        .booking-modal-close { position: absolute; top: -18px; right: -18px; background:#fff; border:none; font-size:18px; cursor:pointer; color:var(--deep-green); width:40px; height:40px; border-radius:50%; box-shadow: 0 8px 20px rgba(11,59,44,0.12); display:flex; align-items:center; justify-content:center; }
+
+        .modal-info-list { display:flex; flex-direction:column; gap:12px; margin-top:6px; }
+        .modal-info-card { display:flex; gap:12px; align-items:flex-start; background: linear-gradient(180deg, rgba(245,245,242,0.9), rgba(255,255,255,0.9)); padding:12px; border-radius:10px; border:1px solid rgba(11,59,44,0.03); }
+        .modal-info-icon { width:44px; height:44px; display:flex; align-items:center; justify-content:center; border-radius:10px; background: linear-gradient(135deg, rgba(11,59,44,0.08), rgba(74,124,89,0.06)); color:#fff; font-size:18px; }
+        .modal-info-title { font-weight:700; color:var(--deep-green); margin-bottom:4px; }
+        .modal-info-text { color:var(--text-light); font-size:0.95rem; }
+
+        .modal-actions { display:flex; gap:12px; margin-top:14px; flex-wrap:wrap; }
+        .modal-btn { flex:1 1 auto; padding:12px 16px; border-radius:10px; font-weight:700; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:8px; }
+        .modal-btn.call { background: linear-gradient(135deg,var(--light-green),var(--deep-green)); color:#fff; box-shadow: 0 12px 28px rgba(11,59,44,0.12); }
+        .modal-btn.email { background: #fff; color: var(--deep-green); border:1px solid rgba(11,59,44,0.06); }
+        .modal-btn.wa { background: #18d26e; color:#fff; box-shadow: 0 12px 28px rgba(24,210,110,0.16); }
+
+        .modal-charges { margin-top:16px; padding:14px; border-radius:10px; background: linear-gradient(180deg,#fff,#fff); border:1px solid rgba(212,175,55,0.12); }
+        .modal-charges h4 { margin:0 0 8px 0; background: linear-gradient(90deg, rgba(212,175,55,0.06), transparent); padding:8px 12px; border-radius:8px; color: #9a6a00; font-weight:800; }
+        .modal-charges ul { list-style:none; padding:0; margin:8px 0 0 0; }
+        .modal-charges li { display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px dashed rgba(212,175,55,0.06); }
+        .modal-charges li:last-child { border-bottom:none; }
+        .modal-charges .room-name { color:var(--deep-green); font-weight:700; }
+        .modal-charges .room-price { color:#b8860b; font-weight:800; }
+
+        .btn-call { background: linear-gradient(135deg,var(--light-green),var(--deep-green)); color:#fff; }
+        .btn-email { background: #f5f5f5; color:var(--text-dark); border:1px solid rgba(0,0,0,0.06); }
+        .btn-whatsapp { background:#25D366; color:#fff; }
+
+        .booking-charges ul { margin:8px 0 0 18px; }
+
+        /* Responsive modal behavior */
+        @media (max-width: 880px) {
+            .booking-modal-content { grid-template-columns: 1fr; width: min(720px, 96%); }
+            .booking-modal-left .map-preview { height:140px; }
+        }
+
+        @media (max-width: 480px) {
+            .booking-modal-content { padding:12px; }
+            .booking-modal-left .map-preview { height:120px; }
+            .booking-contact-actions a { flex:1 1 100%; justify-content:center; padding:12px; }
+            .booking-modal-close { top:8px; right:8px; }
+        }
+
     </style>
 </head>
 
 <body>
     <div class="menu-overlay" id="menuOverlay"></div>
+    <button id="openBookingBtnFloating" class="floating-book-btn" aria-label="Book Now">Book Now</button>
 
     <nav class="navbar" id="navbar">
         <div class="nav-container">
@@ -1353,12 +1441,20 @@
                 <p class="subtitle">Cozy Spaces Where You Connect With Nature</p>
             </section>
 
-            <!-- Intro Section -->
-            <div class="rooms-intro">
-                <p>
-                    Each room at Zensui Jambhala is thoughtfully designed to blend comfort with nature. Wake up to the soothing sounds of the Riyang River and breathtaking mountain views. Our homestay offers the perfect escape for those seeking peace, tranquility, and authentic
-                    hospitality.
-                </p>
+           
+
+            <!-- Booking bar -->
+            <div class="booking-bar" role="region" aria-label="Contact to book">
+                <div class="booking-bar-inner">
+                    <div class="booking-icon" aria-hidden="true">📞</div>
+                    <div class="booking-text">
+                        <div class="booking-title">Ready to Book Your Stay?</div>
+                        <div class="booking-subtitle">Contact us directly for reservations and inquiries</div>
+                    </div>
+                </div>
+                <div class="booking-actions">
+                    <button id="openBookingBtn" class="book-btn primary-book-btn" aria-haspopup="dialog">Book Now</button>
+                </div>
             </div>
 
             <!-- Rooms Grid -->
@@ -1386,7 +1482,7 @@
                                 <div class="price-period">per head per night</div>
                             </div>
 
-                            <a href="rooms1.html" class="book-btn">View Details</a>
+                            <!-- <a href="rooms1.html" class="book-btn">View Details</a> -->
 
                         </div>
                     </div>
@@ -1413,8 +1509,8 @@
                                 <div class="price-amount">₹1200.00</div>
                                 <div class="price-period">per head per night</div>
                             </div>
-
-                            <a href="rooms2.html" class="book-btn">View Details</a>
+<!-- 
+                            <a href="rooms2.html" class="book-btn">View Details</a> -->
 
                         </div>
                     </div>
@@ -1442,7 +1538,7 @@
                                 <div class="price-period">per head per night</div>
                             </div>
 
-                            <a href="rooms3.html" class="book-btn">View Details</a>
+                            <!-- <a href="rooms3.html" class="book-btn">View Details</a> -->
 
                         </div>
                     </div>
@@ -1470,7 +1566,7 @@
                                 <div class="price-period">per head per night</div>
                             </div>
 
-                            <a href="rooms4.html" class="book-btn">View Details</a>
+                            <!-- <a href="rooms4.html" class="book-btn">View Details</a> -->
 
                         </div>
                     </div>
@@ -1498,7 +1594,7 @@
                                 <div class="price-period">per head per night</div>
                             </div>
 
-                            <a href="rooms5.html" class="book-btn">View Details</a>
+                            <!-- <a href="rooms5.html" class="book-btn">View Details</a> -->
 
                         </div>
                     </div>
@@ -1526,7 +1622,7 @@
                                 <div class="price-period">per head per night</div>
                             </div>
 
-                            <a href="rooms6.html" class="book-btn">View Details</a>
+                            <!-- <a href="rooms6.html" class="book-btn">View Details</a> -->
 
                         </div>
                     </div>
@@ -1707,6 +1803,102 @@
             observer.observe(card);
         });
     </script>
+
+        <!-- Booking modal markup (restyled, map removed) -->
+        <div id="bookingModal" class="booking-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="bookingModalTitle">
+            <div class="booking-modal-content" role="document">
+                <button id="bookingModalClose" class="booking-modal-close" aria-label="Close dialog">×</button>
+                <h3 id="bookingModalTitle" style="font-size:1.5rem;color:var(--deep-green);margin:6px 0 8px 0;">Contact & Booking</h3>
+                <div class="modal-scroll">
+                <div class="modal-info-list">
+                    <div class="modal-info-card">
+                        <div class="modal-info-icon">📍</div>
+                        <div>
+                            <div class="modal-info-title">Location</div>
+                            <div class="modal-info-text">Sittong, Riyang River<br>Darjeeling District, West Bengal</div>
+                        </div>
+                    </div>
+
+                    <div class="modal-info-card">
+                        <div class="modal-info-icon">📞</div>
+                        <div>
+                            <div class="modal-info-title">Phone</div>
+                            <div class="modal-info-text"><a href="tel:+918918323185" style="color:inherit;text-decoration:none;">+91 891-8323185</a></div>
+                        </div>
+                    </div>
+
+                    <div class="modal-info-card">
+                        <div class="modal-info-icon">✉️</div>
+                        <div>
+                            <div class="modal-info-title">Email</div>
+                            <div class="modal-info-text"><a href="mailto:zensuijambhala@gmail.com" style="color:inherit;text-decoration:none;">zensuijambhala@gmail.com</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-actions" role="group" aria-label="Contact actions">
+                    <a href="tel:+918918323185" class="modal-btn call" aria-label="Call Now">📞 Call Now</a>
+                    <a href="mailto:zensuijambhala@gmail.com" class="modal-btn email" aria-label="Email Us">✉️ Email Us</a>
+                    <a href="https://wa.me/918918323185" target="_blank" rel="noopener noreferrer" class="modal-btn wa" aria-label="WhatsApp">💬 WhatsApp</a>
+                </div>
+
+                <div class="modal-charges" aria-labelledby="chargesTitle">
+                    <h4 id="chargesTitle">Room Charges</h4>
+                    <ul>
+                        <li><span class="room-name">Riverstone Retreat</span><span class="room-price">₹1,200/head/night</span></li>
+                        <li><span class="room-name">Scenic Family Retreat</span><span class="room-price">₹1,200/head/night</span></li>
+                        <li><span class="room-name">All Other Rooms</span><span class="room-price">Starting ₹1,200/head/night</span></li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+            <div id="bookingModalBackdrop" class="booking-modal-backdrop" aria-hidden="true"></div>
+        </div>
+
+        <script>
+            (function(){
+                const openBtn = document.getElementById('openBookingBtn');
+                const openBtnFloating = document.getElementById('openBookingBtnFloating');
+                const modal = document.getElementById('bookingModal');
+                const closeBtn = document.getElementById('bookingModalClose');
+                const backdrop = document.getElementById('bookingModalBackdrop');
+                let lastFocused = null;
+
+                function openModal(){
+                    lastFocused = document.activeElement;
+                    modal.classList.add('active');
+                    modal.setAttribute('aria-hidden','false');
+                    document.body.style.overflow = 'hidden';
+                    closeBtn.focus();
+                }
+
+                function closeModal(){
+                    modal.classList.remove('active');
+                    modal.setAttribute('aria-hidden','true');
+                    document.body.style.overflow = '';
+                    if(lastFocused) lastFocused.focus();
+                }
+
+                if(openBtn){ openBtn.addEventListener('click', openModal); }
+                if(openBtnFloating){ openBtnFloating.addEventListener('click', openModal); }
+                if(closeBtn){ closeBtn.addEventListener('click', closeModal); }
+                if(backdrop){ backdrop.addEventListener('click', closeModal); }
+
+                // Focus first action when modal opens for faster interaction
+                function focusFirstAction(){
+                    const call = modal.querySelector('.btn-call');
+                    const email = modal.querySelector('.btn-email');
+                    if(call) call.focus(); else if(email) email.focus();
+                }
+
+                const originalOpen = openModal;
+                openModal = function(){ originalOpen(); setTimeout(focusFirstAction, 80); };
+
+                document.addEventListener('keydown', function(e){
+                    if(e.key === 'Escape' && modal.classList.contains('active')){ closeModal(); }
+                });
+            })();
+        </script>
 
 </body>
 
