@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zensui Jambhala — Properties</title>
+    <!-- floating-buttons stylesheet link removed -->
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --white: #ffffff;
+            --gold: #D4AF37;
+            --deep-green: #0B3B2C;
+            --light-green: #1A5C47;
+            --cream: #F8F6F0;
+            --shadow: rgba(11, 59, 44, 0.1);
+        }
+
+        html {
+            scrollbar-gutter: stable;
+            overflow-y: scroll;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.03);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(11, 59, 44, 0.28);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(11, 59, 44, 0.48);
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            color: var(--deep-green);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.7rem 5%;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 4px 30px var(--shadow);
+        }
+
+        .nav-container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--deep-green);
+            letter-spacing: 1px;
+            z-index: 1001;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .logo-img {
+            height: 60px;
+            width: 60px;
+            min-width: 60px;
+            max-width: 60px;
+            background: linear-gradient(135deg, var(--deep-green), var(--light-green));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1.8rem;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(11, 59, 44, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            border: 2px solid var(--gold);
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .logo .logo-img img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .logo:hover .logo-img {
+            transform: scale(1.08) rotate(-5deg);
+            box-shadow: 0 6px 20px rgba(11, 59, 44, 0.3);
+        }
+
+        .logo img {
+            height: 80px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .logo-text .brand-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--deep-green);
+            letter-spacing: 1px;
+            line-height: 1;
+        }
+
+        .logo-text .brand-name span {
+            color: var(--gold);
+        }
+
+        .logo-text .brand-tag {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .logo .logo-img img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .logo:hover .logo-img {
+            transform: scale(1.08) rotate(-5deg);
+            box-shadow: 0 6px 20px rgba(11, 59, 44, 0.3);
+        }
+
+        .logo img {
+            height: 80px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .logo-text .brand-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--deep-green);
+            letter-spacing: 1px;
+            line-height: 1;
+        }
+
+        .logo-text .brand-name span {
+            color: var(--gold);
+        }
+
+        .logo-text .brand-tag {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--deep-green);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, var(--deep-green), var(--light-green));
+            color: var(--white);
+            padding: 0.8rem 1.8rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 1001;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+        }
+
+        .menu-toggle span {
+            width: 28px;
+            height: 3px;
+            background: var(--deep-green);
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(11, 59, 44, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 12rem 5% 5rem;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(11, 59, 44, 0.03) 0%, rgba(26, 92, 71, 0.05) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(11, 59, 44, 0.08) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            color: var(--deep-green);
+            margin-bottom: 1.2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .hero .section-subtitle {
+            font-size: 1.3rem;
+            color: var(--light-green);
+            opacity: 0.9;
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        /* Properties Section */
+        #properties {
+            padding: 6rem 5% 8rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 5rem;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            color: var(--deep-green);
+            margin-bottom: 1.2rem;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            border-radius: 2px;
+        }
+
+        .section-description {
+            font-size: 1.15rem;
+            color: var(--light-green);
+            line-height: 1.8;
+            margin-top: 2rem;
+        }
+
+        /* Property Cards */
+        .properties-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+            width: 100%;
+        }
+
+        .property-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(11, 59, 44, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .property-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 50px rgba(11, 59, 44, 0.15);
+        }
+
+        .property-image {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+            width: 100%;
+            background-color: #f0f0f0;
+        }
+
+        .property-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .property-card:hover .property-image img {
+            transform: scale(1.08);
+        }
+
+        .property-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--gold), #c99a2e);
+            color: var(--white);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .badge-construction {
+            background: linear-gradient(135deg, #6B7280, #4B5563);
+        }
+
+        .property-content {
+            padding: 2rem 2rem 2.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .property-header {
+            margin-bottom: 1.2rem;
+        }
+
+        .property-title {
+            font-size: 1.6rem;
+            color: var(--deep-green);
+            margin-bottom: 0.6rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .property-location {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--light-green);
+            font-size: 0.95rem;
+            opacity: 0.85;
+        }
+
+        .property-location::before {
+            content: '📍';
+            font-size: 1rem;
+        }
+
+        .property-description {
+            color: var(--deep-green);
+            font-size: 1.05rem;
+            line-height: 1.75;
+            margin-bottom: 1.8rem;
+            flex: 1;
+            opacity: 0.85;
+        }
+
+        .property-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .feature-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.5rem 1rem;
+            background: rgba(11, 59, 44, 0.05);
+            border: 1px solid rgba(11, 59, 44, 0.1);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--deep-green);
+            font-weight: 500;
+        }
+
+        .property-footer {
+            display: flex;
+            gap: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(11, 59, 44, 0.1);
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            flex: 1;
+            padding: 0.95rem 1.5rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-family: 'Georgia', serif;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--deep-green), var(--light-green));
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(11, 59, 44, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(11, 59, 44, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--deep-green);
+            border: 2px solid var(--deep-green);
+        }
+
+        .btn-secondary:hover {
+            background: var(--deep-green);
+            color: var(--white);
+        }
+
+        .btn-disabled {
+            background: var(--white);
+            color: #6B7280;
+            cursor: not-allowed;
+            border: 2px solid #E5E7EB;
+            position: relative;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        .btn-disabled::after {
+            content: '⏰';
+            margin-left: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .btn-disabled:hover {
+            transform: none;
+            box-shadow: none;
+            background: var(--white);
+            color: #6B7280;
+            border-color: #D1D5DB;
+        }
+
+        /* Footer base */
+        footer {
+            background: linear-gradient(180deg, #051f18 0%, var(--deep-green) 50%, #0a3528 100%);
+            color: var(--cream);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 5rem 5% 2.5rem;
+            display: grid;
+            grid-template-columns: 2.2fr 1fr 1.2fr 1.5fr;
+            gap: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-section h3 {
+            color: var(--gold);
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 0.8rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+        }
+
+        .footer-about .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .footer-about .footer-logo span {
+            color: var(--gold);
+        }
+
+        .footer-about p {
+            color: rgba(248, 246, 240, 0.8);
+            line-height: 1.9;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+                .footer-links { list-style: none; }
+                .footer-links li { margin-bottom: 1rem; }
+                .footer-links a { color: rgba(248,246,240,0.8); text-decoration:none; transition: color 0.25s ease; display:inline-flex; align-items:center; font-size:1rem; position:relative; padding-left:1.6rem; }
+                .footer-links a::before {
+                        content: '→';
+                        position: absolute;
+                        left: 0;
+                        top: 50%;
+                        transform: translateY(-50%) translateX(-8px);
+                        opacity: 0;
+                        transition: transform 0.25s ease, opacity 0.25s ease;
+                        color: var(--gold);
+                        font-weight: 700;
+                }
+
+                .footer-links a:hover::before { transform: translateY(-50%) translateX(0); opacity:1; }
+
+        .contact-info { list-style:none; }
+        .contact-info li { display:flex; align-items:flex-start; gap:1rem; margin-bottom:1.5rem; color: rgba(248,246,240,0.8); font-size:1rem; line-height:1.7; }
+        .contact-info li .icon { min-width:40px; height:40px; display:flex; align-items:center; justify-content:center; background: rgba(212,175,55,0.1); border:1px solid rgba(212,175,55,0.3); border-radius:8px; font-size:1.2rem; }
+
+        .social-links { display:flex; gap:1rem; margin-top:2rem; }
+        .social-links a { width:50px; height:50px; display:flex; align-items:center; justify-content:center; background: rgba(255,255,255,0.05); border:2px solid rgba(212,175,55,0.2); border-radius:12px; color:var(--cream); font-size:1.4rem; text-decoration:none; transition: all 0.3s ease; }
+        .social-links a:hover { border-color:var(--gold); color:var(--gold); transform: translateY(-6px) rotate(3deg); box-shadow:0 8px 24px rgba(212,175,55,0.28); }
+
+        .footer-divider { max-width:1400px; margin:0 auto; height:1px; background: linear-gradient(90deg, transparent, rgba(212,175,55,0.3), transparent); }
+
+        .footer-bottom { max-width:1400px; margin:0 auto; padding:2.5rem 5%; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.5rem; }
+        .footer-bottom p { color: rgba(248,246,240,0.6); font-size:0.95rem; margin:0; }
+        .footer-bottom-links { display:flex; gap:2.5rem; }
+        .footer-bottom-links a { color: rgba(248,246,240,0.6); text-decoration:none; font-size:0.95rem; }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .properties-grid {
+                grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+                gap: 2.5rem;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 980px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 70%;
+                max-width: 350px;
+                background: var(--white);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transition: right 0.4s ease;
+                box-shadow: -5px 0 30px var(--shadow);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+                padding: 1rem;
+                display: block;
+            }
+
+            .logo {
+                font-size: 1.1rem;
+                gap: 0.5rem;
+                max-width: calc(100% - 60px);
+            }
+
+            .logo-img {
+                height: 40px;
+                width: 40px;
+                min-width: 40px;
+                font-size: 1.4rem;
+                border-radius: 50%;
+                border: 2px solid var(--gold);
+            }
+
+            .logo-text {
+                flex-shrink: 1;
+                min-width: 0;
+            }
+
+            .logo-text .brand-name {
+                font-size: 1.1rem;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .logo-text .brand-tag {
+                font-size: 0.55rem;
+                white-space: nowrap;
+            }
+
+            .logo img {
+                height: 40px;
+            }
+
+            .navbar {
+                padding: 0.8rem 4%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .section-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .properties-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .properties-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.1rem;
+                gap: 0.5rem;
+            }
+
+            .logo-img {
+                height: 35px;
+                width: 35px;
+                min-width: 35px;
+                font-size: 1.2rem;
+                border-radius: 50%;
+                border: 2px solid var(--gold);
+            }
+
+            .logo-text .brand-name {
+                font-size: 1rem;
+            }
+
+            .logo-text .brand-tag {
+                font-size: 0.55rem;
+                letter-spacing: 1px;
+            }
+
+            .logo img {
+                height: 35px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .property-footer {
+                flex-direction: column;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <div class="logo-img">
+                    <img src="logo 2.png" alt="Zensui Jambhala Logo">
+                </div>
+                <div class="logo-text">
+                    <div class="brand-name">Zensui <span>Jambhala</span></div>
+                    <div class="brand-tag">Homestays</div>
+                </div>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rooms.html">Rooms</a></li>
+                <li><a href="guest-diary.html">Guest Diary</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="property.html">Properties</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero" id="hero">
+            <div class="hero-content">
+                <h1>Our Properties</h1>
+                <p class="section-subtitle">Experience authentic hospitality across our collection of riverside retreats</p>
+            </div>
+        </section>
+
+        <section id="properties">
+            <div class="section-header">
+                <p class="section-description">We operate two established homestays along the serene Riyang River in Sittong, with an exciting farmstay project currently under development in Gangarampur.</p>
+            </div>
+
+            <div class="properties-grid">
+                
+
+                <div class="property-card">
+                    <div class="property-image">
+                        <img src="hero-banner.jpg" alt="Jambhala Homestay">
+                        <div class="property-badge">Popular</div>
+                    </div>
+                    <div class="property-content">
+                        <div class="property-header">
+                            <h3 class="property-title">Zensui Jambhala Homestay</h3>
+                            <p class="property-location">Sittong, Riyang River</p>
+                        </div>
+                        <p class="property-description">A spacious riverside property ideal for groups and extended families. Featuring comfortable accommodations, shared gathering spaces, and the same warm hospitality that defines our brand.</p>
+                        <div class="property-features">
+                            <span class="feature-tag">👨‍👩‍👧‍👦 Family Friendly</span>
+                            <span class="feature-tag">🏞️ Riverside Setting</span>
+                            <span class="feature-tag">🤝 Group Activities</span>
+                        </div>
+                        <div class="property-footer">
+                            <a href="rooms.html" class="btn-primary">View Rooms</a>
+                            <a href="contact.html" class="btn-secondary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="property-card">
+                    <div class="property-image">
+                        <img src="farm.jpg" alt="Gangarampur Farmstay">
+                        <div class="property-badge badge-construction">Coming Soon</div>
+                    </div>
+                    <div class="property-content">
+                        <div class="property-header">
+                            <h3 class="property-title">Zensui Jambhala Farmstay</h3>
+                            <p class="property-location">Gangarampur</p>
+                        </div>
+                        <p class="property-description">An exciting new chapter in our journey. This farmstay project will offer immersive agricultural experiences, farm-to-table dining, and a unique rural retreat. Currently under construction with opening details to be announced.</p>
+                        <div class="property-features">
+                            <span class="feature-tag">🚧 Under Construction</span>
+                            <span class="feature-tag">🌾 Farm Experience</span>
+                            <span class="feature-tag">📅 2025 Opening</span>
+                        </div>
+                        <div class="property-footer">
+                           
+                            <a href="contact.html" class="btn-secondary">Inquire</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-main">
+            <div class="footer-section footer-about">
+                <div class="footer-logo">Zensui <span>Jambhala</span></div>
+                <p>Nestled by the serene Riyang River in Sittong, our homestay offers an escape into nature's embrace. Experience authentic hospitality, breathtaking views, and memories that last a lifetime.</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/profile.php?id=61584633060195" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook">
+                        <span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </span>
+                    </a>
+                    <a href="https://www.instagram.com/zensui_jambhala_homestay/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+                        <span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </span>
+                    </a>
+                    <a href="https://wa.me/918918323185" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp">
+                        <span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="rooms.html">Our Rooms</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <ul class="contact-info">
+                    <li>
+                        <div class="icon">📍</div>
+                        <div>Sittong, Riyang River<br>Darjeeling District, West Bengal</div>
+                    </li>
+                    <li>
+                        <div class="icon">📞</div>
+                        <div>+91 891-8323185</div>
+                    </li>
+                    <li>
+                        <div class="icon">✉️</div>
+                        <div>zensuijambhala@gmail.com</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Zensui Jambhala. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="terms.html">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const body = document.body;
+    <!-- Floating Call & WhatsApp Buttons removed site-wide -->
+
+        function toggleMenu() {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+        menuOverlay.addEventListener('click', toggleMenu);
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    toggleMenu();
+                }
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+
+</body>
+
+</html>

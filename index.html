@@ -1,0 +1,1601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zensui Jambhala Homestay</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --white: #ffffff;
+            --gold: #D4AF37;
+            --deep-green: #0B3B2C;
+            --light-green: #1A5C47;
+            --cream: #F8F6F0;
+            --shadow: rgba(11, 59, 44, 0.1);
+        }
+
+        html {
+            scrollbar-gutter: stable;
+            overflow-y: scroll;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.03);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(11, 59, 44, 0.28);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(11, 59, 44, 0.48);
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            color: var(--deep-green);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 20px var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.7rem 5%;
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 4px 30px var(--shadow);
+        }
+
+        .nav-container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--deep-green);
+            letter-spacing: 1px;
+            z-index: 1001;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .logo-img {
+            height: 60px;
+            width: 60px;
+            min-width: 60px;
+            max-width: 60px;
+            background: linear-gradient(135deg, var(--deep-green), var(--light-green));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1.8rem;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(11, 59, 44, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            overflow: hidden;
+            border: 2px solid var(--gold);
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .logo .logo-img img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .logo:hover .logo-img {
+            transform: scale(1.08) rotate(-5deg);
+            box-shadow: 0 6px 20px rgba(11, 59, 44, 0.3);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
+        }
+
+        .logo-text .brand-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--deep-green);
+            letter-spacing: 1px;
+            line-height: 1;
+        }
+
+        .logo-text .brand-name span {
+            color: var(--gold);
+        }
+
+        .logo-text .brand-tag {
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--deep-green);
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, var(--deep-green), var(--light-green));
+            color: var(--white);
+            padding: 0.8rem 1.8rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        /* Hero Section Book Now Button - Yellow & Square */
+        .hero-buttons .cta-btn {
+            background: linear-gradient(135deg, var(--gold), #E5C158);
+            color: #fff;
+            padding: 1.2rem 2.5rem;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+            text-transform: uppercase;
+        }
+
+        .hero-buttons .cta-btn:hover {
+            background: linear-gradient(135deg, #FFED4E, #FFD700);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5);
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(11, 59, 44, 0.3);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            z-index: 999;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+        }
+
+        .menu-toggle span {
+            width: 28px;
+            height: 3px;
+            background: var(--deep-green);
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(11, 59, 44, 0.5);
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .menu-overlay.active {
+            visibility: visible;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            margin-top: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            background: url('WhatsApp Image 2025-12-10 at 2.13.27 PM.jpeg') center/cover no-repeat;
+            background-attachment: fixed;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            width: 100%;
+            max-width: 100%;
+            padding: 4rem 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            animation: fadeInLeft 0.8s ease;
+            max-width: 550px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            color: var(--white);
+            font-weight: 700;
+            font-style: italic;
+            margin: 0;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--white);
+            margin: 0;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInRight 0.8s ease;
+            max-width: 45%;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            max-height: 380px;
+            border-radius: 20px;
+            border: 6px solid var(--white);
+            box-shadow: 0 20px 50px rgba(11, 59, 44, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .hero-image img:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(11, 59, 44, 0.2);
+        }
+
+        .cta-btn.secondary {
+            background: var(--deep-green);
+            color: var(--white);
+            border: 2px solid var(--deep-green);
+            box-shadow: 0 4px 15px rgba(11, 59, 44, 0.25);
+            border-radius: 8px;
+            padding: 0.9rem 2.8rem;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .cta-btn.secondary:hover {
+            background: var(--light-green);
+            border-color: var(--light-green);
+            box-shadow: 0 8px 25px rgba(11, 59, 44, 0.35);
+            transform: translateY(-2px);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--deep-green);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--gold);
+            margin: 1rem auto;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: var(--light-green);
+            margin-bottom: 3rem;
+            font-style: italic;
+        }
+
+        /* Nearby Attractions Section */
+        #attractions {
+            background: var(--cream);
+        }
+
+        .attractions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .attraction-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px var(--shadow);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            min-height: 480px;
+            height: auto;
+        }
+
+        .attraction-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(11, 59, 44, 0.15);
+        }
+
+        .attraction-image {
+            position: relative;
+            width: 100%;
+            min-height: 200px;
+            height: auto;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+        }
+
+        .attraction-image img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top center;
+            transition: transform 0.5s ease;
+        }
+
+        .attraction-card:hover .attraction-image img {
+            transform: scale(1.08);
+        }
+
+        .distance-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--gold);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .attraction-content {
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .attraction-card h3 {
+            font-size: 1.6rem;
+            color: var(--deep-green);
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .attraction-description {
+            color: #666;
+            line-height: 1.7;
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+        }
+
+        /* Experiences Section */
+        #experiences {
+            background: var(--cream);
+            padding: 3rem 1rem 4rem;
+        }
+
+        .experiences-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .experience-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 18px var(--shadow);
+            display: flex;
+            flex-direction: column;
+            min-height: 420px;
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        .experience-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 18px 40px rgba(11, 59, 44, 0.12);
+        }
+
+        .experience-image {
+            width: 100%;
+            min-height: 180px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8f8f8, #efefef);
+        }
+
+        .experience-image img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .experience-content {
+            padding: 1.6rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            flex-grow: 1;
+        }
+
+        .experience-card h3 {
+            font-size: 1.25rem;
+            margin: 0;
+            color: var(--deep-green);
+            font-weight: 700;
+        }
+
+        .experience-description {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* YouTube Shorts Testimonials Styling */
+        #guest-diary {
+            background: var(--white);
+        }
+
+        .shorts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.8rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            justify-items: center;
+        }
+
+        .short-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px var(--shadow);
+            transition: all 0.4s ease;
+            width: 100%;
+            max-width: 280px;
+        }
+
+        .short-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 50px rgba(11, 59, 44, 0.25);
+        }
+
+        .short-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 177.78%; /* 9:16 aspect ratio for Shorts */
+            background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%);
+            overflow: hidden;
+        }
+
+        .short-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 0;
+        }
+
+        .short-info {
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .short-info h3 {
+            font-size: 1.1rem;
+            color: var(--deep-green);
+            margin-bottom: 0.4rem;
+            font-weight: 700;
+        }
+
+        .short-date {
+            font-size: 0.85rem;
+            color: var(--light-green);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(180deg, #051f18 0%, var(--deep-green) 50%, #0a3528 100%);
+            color: var(--cream);
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 1400px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+        }
+
+        .footer-main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 5rem 5% 2.5rem;
+            display: grid;
+            grid-template-columns: 2.2fr 1fr 1.2fr 1.5fr;
+            gap: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-section h3 {
+            color: var(--gold);
+            font-size: 1.4rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 0.8rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            font-size: 1.1rem;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--gold), transparent);
+            border-radius: 2px;
+        }
+
+        .footer-about .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+        }
+
+        .footer-about .footer-logo span {
+            color: var(--gold);
+        }
+
+        .footer-about p {
+            color: rgba(248, 246, 240, 0.8);
+            line-height: 1.9;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: rgba(248, 246, 240, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            font-size: 1rem;
+            position: relative;
+            padding-left: 0;
+        }
+
+        .footer-links a::before {
+            content: '→';
+            position: absolute;
+            left: -20px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            color: var(--gold);
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+            padding-left: 20px;
+        }
+
+        .footer-links a:hover::before {
+            left: 0;
+            opacity: 1;
+        }
+
+        .contact-info {
+            list-style: none;
+        }
+
+        .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            color: rgba(248, 246, 240, 0.8);
+            font-size: 1rem;
+            line-height: 1.7;
+            transition: all 0.3s ease;
+        }
+
+        .contact-info li:hover {
+            color: var(--white);
+            transform: translateX(5px);
+        }
+
+        .contact-info li .icon {
+            min-width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 8px;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-info li:hover .icon {
+            background: rgba(212, 175, 55, 0.2);
+            border-color: var(--gold);
+            transform: scale(1.1);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            border-radius: 12px;
+            color: var(--cream);
+            font-size: 1.4rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-links a:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-6px) rotate(3deg);
+            box-shadow: 0 8px 24px rgba(212, 175, 55, 0.28);
+        }
+
+        .social-links a span {
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover span {
+            transform: scale(1.2);
+        }
+
+        .footer-divider {
+            max-width: 1400px;
+            margin: 0 auto;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+            position: relative;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-bottom p {
+            color: rgba(248, 246, 240, 0.6);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-bottom-links a {
+            color: rgba(248, 246, 240, 0.6);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .footer-bottom-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .footer-bottom-links a:hover {
+            color: var(--gold);
+        }
+
+        .footer-bottom-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Floating Buttons */
+        .floating-buttons {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 999;
+        }
+
+        .call-btn, .wa-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .call-btn {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+        }
+
+        .wa-btn {
+            background: linear-gradient(135deg, #0B8C3E, #0A6B32);
+        }
+
+        .call-btn:hover, .wa-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .call-btn svg, .wa-btn svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .call-btn span, .wa-btn span {
+            display: none;
+        }
+
+        /* Animations */
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .footer-main {
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 3rem;
+            }
+            .footer-about {
+                grid-column: 1 / -1;
+                padding-right: 0;
+                max-width: 700px;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 70%;
+                max-width: 350px;
+                background: var(--white);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transition: right 0.4s ease;
+                box-shadow: -5px 0 30px var(--shadow);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .logo {
+                font-size: 1.1rem;
+                gap: 0.5rem;
+                max-width: calc(100% - 60px);
+            }
+
+            .logo-img {
+                height: 40px;
+                width: 40px;
+                min-width: 40px;
+                font-size: 1.4rem;
+            }
+
+            .logo-text .brand-name {
+                font-size: 1.1rem;
+            }
+
+            .logo-text .brand-tag {
+                font-size: 0.55rem;
+            }
+
+            .hero {
+                margin-top: 70px;
+                min-height: 70vh;
+            }
+
+            .hero-content {
+                flex-direction: column;
+                padding: 3rem 5%;
+                gap: 2rem;
+            }
+
+            .hero-text {
+                max-width: 100%;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-image {
+                max-width: 100%;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr 1fr;
+                gap: 2.5rem;
+                padding: 4rem 5% 2rem;
+            }
+
+            .footer-about {
+                grid-column: 1 / -1;
+                max-width: 100%;
+            }
+
+            .experiences-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .shorts-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 2rem;
+            }
+
+            .short-card {
+                max-width: 320px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 65vh;
+                margin-top: 70px;
+                background-attachment: scroll;
+            }
+
+            .hero-content {
+                padding: 2rem 5%;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .section-subtitle {
+                font-size: 1rem;
+            }
+
+            .attractions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .experiences-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .shorts-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .short-card {
+                max-width: 100%;
+            }
+
+            .footer-main {
+                grid-template-columns: 1fr;
+                padding: 3.5rem 5% 2rem;
+                gap: 3rem;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem 5%;
+                gap: 1.5rem;
+            }
+
+            .footer-bottom-links {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+
+            section {
+                padding: 3rem 5%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-img {
+                height: 35px;
+                width: 35px;
+                min-width: 35px;
+                font-size: 1.2rem;
+            }
+
+            .logo-text .brand-name {
+                font-size: 1rem;
+            }
+
+            .logo-text .brand-tag {
+                font-size: 0.55rem;
+            }
+
+            .hero {
+                min-height: 50vh;
+            }
+
+            .hero-content {
+                padding: 1.5rem 4%;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero p {
+                font-size: 0.9rem;
+            }
+
+            .cta-btn {
+                padding: 0.7rem 1.5rem;
+                font-size: 0.85rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .shorts-grid {
+                gap: 1.5rem;
+            }
+
+            .short-info {
+                padding: 1rem;
+            }
+
+            .short-info h3 {
+                font-size: 1.1rem;
+            }
+
+            .short-date {
+                font-size: 0.85rem;
+            }
+
+            .footer-main {
+                padding: 3rem 5% 1.5rem;
+                gap: 2.5rem;
+            }
+
+            .footer-section h3 {
+                font-size: 1rem;
+            }
+
+            .social-links a {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+
+            section {
+                padding: 2.5rem 4%;
+            }
+
+            .floating-buttons {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .call-btn, .wa-btn {
+                width: 55px;
+                height: 55px;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1024px) {
+            .hero {
+                min-height: 70vh;
+                margin-top: 72px;
+                background-attachment: scroll;
+            }
+
+            .hero-content {
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 2rem 5%;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .hero-text {
+                max-width: 100%;
+                align-items: center;
+            }
+
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+                max-width: 500px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-image {
+                max-width: 85%;
+            }
+
+            .hero-image img {
+                max-height: 350px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="menu-overlay" id="menuOverlay"></div>
+
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="" class="logo">
+                <div class="logo-img">
+                    <img src="logo 2.png" alt="Zensui Jambhala Logo">
+                </div>
+                <div class="logo-text">
+                    <div class="brand-name">Zensui <span>Jambhala</span></div>
+                    <div class="brand-tag">Homestays</div>
+                </div>
+            </a>
+
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="">Home</a></li>
+                <li><a href="rooms.html">Rooms</a></li>
+                <li><a href="guest-diary.html">Guest Diary</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="property.html">Properties</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Zensui Jambhala</h1>
+                    <p>Where the sound of flowing rivers, misty hills, and warm Himalayan hospitality come together to create an unforgettable mountain escape.</p>
+                    <div class="hero-buttons">
+                        <a href="rooms.html" class="cta-btn">Book Now</a>
+                        <a href="gallery.html" class="cta-btn secondary">View Gallery</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="hero-banner.jpg" alt="Zensui Jambhala Resort">
+                </div>
+            </div>
+        </section>
+
+        <!-- Nearby Attractions Section -->
+        <section id="attractions">
+            <h2 class="section-title">Nearby Attractions</h2>
+            <p class="section-subtitle">Explore the natural beauty surrounding our homestay</p>
+            <div class="attractions-grid">
+                <div class="attraction-card">
+                    <div class="attraction-image">
+                        <img src="lepcha falls.jpg" alt="Lepcha Falls">
+                        <div class="distance-badge">20 minutes trekking</div>
+                    </div>
+                    <div class="attraction-content">
+                        <h3>Lepcha Falls</h3>
+                        <p class="attraction-description">Experience the breathtaking cascades of Lepcha Falls, just 20 minutes trekking distance from our homestay, where pristine waters flow through verdant forests, creating a serene natural oasis perfect for nature lovers.</p>
+                    </div>
+                </div>
+
+                <div class="attraction-card">
+                    <div class="attraction-image">
+                        <img src="jogighat.jpg" alt="Jogighat">
+                        <div class="distance-badge">In front of our homestay</div>
+                    </div>
+                    <div class="attraction-content">
+                        <h3>Jogighat</h3>
+                        <p class="attraction-description">A charming village nestled in the hills right in front of our homestay, Jogighat offers stunning panoramic views and authentic Himalayan culture with warm hospitality from the local community.</p>
+                    </div>
+                </div>
+
+                <div class="attraction-card">
+                    <div class="attraction-image">
+                        <img src="orange garden.jpg" alt="Orange Garden">
+                        <div class="distance-badge">At our homestay</div>
+                    </div>
+                    <div class="attraction-content">
+                        <h3>Orange Garden</h3>
+                        <p class="attraction-description">Stroll through our own lush orange orchards during harvest season and experience the vibrant agricultural heritage right at our property while enjoying fresh citrus from the gardens.</p>
+                    </div>
+                </div>
+
+                <div class="attraction-card">
+                    <div class="attraction-image">
+                        <img src="riyang .jpg" alt="Crystal Clear Riyang River">
+                        <div class="distance-badge">In front of our homestay</div>
+                    </div>
+                    <div class="attraction-content">
+                        <h3>Crystal Clear Riyang River</h3>
+                        <p class="attraction-description">Witness the pristine waters of the Riyang River flowing right in front of our homestay, perfect for peaceful walks, photography, and connecting with nature's tranquility.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experiences Section -->
+        <section id="experiences">
+            <h2 class="section-title">Experiences</h2>
+            <p class="section-subtitle">Unique activities and local experiences to enjoy during your stay</p>
+            <div class="experiences-grid">
+                <div class="experience-card">
+                    <div class="experience-image">
+                        <img src="lepcha falls.jpg" alt="Lepcha Falls Trekking">
+                    </div>
+                    <div class="experience-content">
+                        <h3>Lepcha Falls Trekking</h3>
+                        <p class="experience-description">Trek through forested trails to reach the beautiful Lepcha Falls — an adventurous hike with rewarding views and fresh mountain air.</p>
+                    </div>
+                </div>
+
+                <div class="experience-card">
+                    <div class="experience-image">
+                        <img src="riyang .jpg" alt="Picnic beside Riyang River">
+                    </div>
+                    <div class="experience-content">
+                        <h3>Picnic beside Riyang River</h3>
+                        <p class="experience-description">Relax by the crystal-clear Riyang River with a curated picnic basket, ideal for quiet afternoons and family time.</p>
+                    </div>
+                </div>
+
+                <div class="experience-card">
+                    <div class="experience-image">
+                        <img src="orange garden.jpg" alt="Orange Plucking">
+                    </div>
+                    <div class="experience-content">
+                        <h3>Orange Plucking</h3>
+                        <p class="experience-description">Join seasonal orange plucking in our orchards — pick fresh fruit, learn about cultivation, and taste straight-from-tree citrus.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Guest Testimonials (YouTube Shorts) -->
+        <section id="guest-diary">
+            <h2 class="section-title">Guest Testimonials</h2>
+            <p class="section-subtitle">Watch what our guests say about their stay</p>
+            
+            <div class="shorts-grid">
+                <!-- YouTube Short 1 -->
+                <div class="short-card">
+                    <div class="short-container"> 
+                        <iframe 
+                            src="https://www.youtube.com/embed/fS8QOPsCs9Q" 
+                            title="Guest Testimonial 1"
+                            allow="autoplay; encrypted-media" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <!-- <div class="short-info">
+                        <h3>Amazing Experience</h3>
+                        <p class="short-date">Guest Testimonial</p>
+                    </div> -->
+                </div>
+
+                <!-- YouTube Short 2 -->
+                <div class="short-card">
+                    <div class="short-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/8yLDSzfywRE" 
+                            title="Guest Testimonial 2"
+                            allow="autoplay; encrypted-media" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <!-- <div class="short-info">
+                        <h3>Peaceful Retreat</h3>
+                        <p class="short-date">Guest Testimonial</p>
+                    </div> -->
+                </div>
+
+                <!-- YouTube Short 3 -->
+                <div class="short-card">
+                    <div class="short-container">
+                        <iframe 
+                            src="https://www.youtube.com/embed/ECVPpRSWVOc?modestbranding=1&rel=0" 
+                            title="Guest Testimonial 3"
+                            allow="autoplay; encrypted-media" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <!-- <div class="short-info">
+                        <h3>Unforgettable Stay</h3>
+                        <p class="short-date">Guest Testimonial</p>
+                    </div> -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-main">
+            <div class="footer-section footer-about">
+                <div class="footer-logo">Zensui <span>Jambhala</span></div>
+                <p>Nestled by the serene Riyang River in Sittong, our homestay offers an escape into nature's embrace. Experience authentic hospitality, breathtaking views, and memories that last a lifetime.</p>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/profile.php?id=61584633060195" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook">
+                        <span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </span>
+                    </a>
+                    <a href="https://www.instagram.com/zensui_jambhala_homestay/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+                        <span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </span>
+                    </a>
+                    <a href="https://wa.me/918918323185" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp">
+                        <span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="rooms.html">Our Rooms</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <ul class="contact-info">
+                    <li>
+                        <div class="icon">📍</div>
+                        <div>Sittong, Riyang River<br>Darjeeling District, West Bengal</div>
+                    </li>
+                    <li>
+                        <div class="icon">📞</div>
+                        <div>+91 891-8323185</div>
+                    </li>
+                    <li>
+                        <div class="icon">✉️</div>
+                        <div>zensuijambhala@gmail.com</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Zensui Jambhala. All rights reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="terms.html">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Call & WhatsApp Buttons -->
+    <div class="floating-buttons">
+        <a class="call-btn" href="tel:+918918323185" title="Call Now">
+            <svg fill="none" viewBox="0 0 24 24">
+                <path fill="#fff" d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 01.91-.27c1 .22 2.07.34 3.17.34a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.1.12 2.17.34 3.17a1 1 0 01-.27.91l-2.2 2.2z"/>
+            </svg>
+            <span>Call Now</span>
+        </a>
+        <a class="wa-btn" href="https://wa.me/918918323185" title="WhatsApp">
+            <svg viewBox="0 0 32 32">
+                <path fill="#fff" d="M16 3C9.373 3 4 8.373 4 15c0 2.65.87 5.1 2.36 7.1L4 29l7.18-2.31A12.93 12.93 0 0116 27c6.627 0 12-5.373 12-12S22.627 3 16 3zm0 22c-1.77 0-3.45-.46-4.91-1.26l-.35-.2-4.27 1.37 1.4-4.15-.22-.36A9.93 9.93 0 016 15c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10zm5.2-7.6c-.28-.14-1.65-.81-1.9-.9-.25-.09-.43-.14-.61.14-.18.28-.7.9-.86 1.08-.16.18-.32.2-.6.07-.28-.14-1.18-.44-2.25-1.4-.83-.74-1.39-1.65-1.55-1.93-.16-.28-.02-.43.12-.57.13-.13.28-.32.42-.48.14-.16.18-.28.28-.46.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.01-.22-.53-.45-.46-.61-.47-.16-.01-.34-.01-.52-.01-.18 0-.48.07-.73.34-.25.27-.96.94-.96 2.3s.98 2.67 1.12 2.85c.14.18 1.93 2.95 4.68 4.02.65.28 1.16.45 1.56.58.65.21 1.24.18 1.7.11.52-.08 1.65-.67 1.88-1.32.23-.65.23-1.2.16-1.32-.07-.12-.25-.18-.53-.32"/>
+            </svg>
+            <span>WhatsApp</span>
+        </a>
+    </div>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const body = document.body;
+
+        function toggleMenu() {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+            body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+        menuOverlay.addEventListener('click', toggleMenu);
+
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
+                    toggleMenu();
+                }
+            });
+        });
+
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+
+            lastScroll = currentScroll;
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+
+                e.preventDefault();
+                const target = document.querySelector(href);
+
+                if (target) {
+                    const offsetTop = target.offsetTop - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 968 && navLinks.classList.contains('active')) {
+                toggleMenu();
+            }
+        });
+    </script>
+</body>
+</html>
