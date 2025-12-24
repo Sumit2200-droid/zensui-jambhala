@@ -278,17 +278,53 @@
         }
 
         /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            margin-top: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            background: url('WhatsApp Image 2025-12-10 at 2.13.27 PM.jpeg') center/cover no-repeat;
-            background-attachment: fixed;
-            position: relative;
-            overflow: hidden;
-        }
+      /* Hero Section */
+.hero {
+    min-height: 100vh;
+    margin-top: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.hero-bg-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.hero-bg-slide.active {
+    opacity: 1;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
 
         .hero-content {
             width: 100%;
@@ -1304,21 +1340,31 @@
 
     <main>
         <!-- Hero Section -->
-        <section class="hero" id="hero">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1>Zensui Jambhala</h1>
-                    <p>Where the sound of flowing rivers, misty hills, and warm Himalayan hospitality come together to create an unforgettable mountain escape.</p>
-                    <div class="hero-buttons">
-                        <a href="rooms.html" class="cta-btn">Book Now</a>
-                        <a href="gallery.html" class="cta-btn secondary">View Gallery</a>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <img src="hero-banner.jpg" alt="Zensui Jambhala Resort">
-                </div>
+     <!-- Hero Section -->
+<section class="hero" id="hero">
+    <div class="hero-background">
+        <div class="hero-bg-slide active" style="background-image: url('WhatsApp Image 2025-12-10 at 2.13.27 PM.jpeg');"></div>
+        <div class="hero-bg-slide" style="background-image: url('WhatsApp\ Image\ 2025-12-22\ at\ 8.24.42\ PM.jpeg');"></div>
+        <div class="hero-bg-slide" style="background-image: url('WhatsApp Image 2025-12-23 at 1.46.56 PM.jpeg');"></div>
+        <div class="hero-bg-slide" style="background-image: url('orange\ garden.jpg');"></div>
+        <div class="hero-bg-slide" style="background-image: url('WhatsApp\ Image\ 2025-12-22\ at\ 8.22.12\ PM.jpeg');"></div>
+    </div>
+    <div class="hero-content">
+        <div class="hero-text">
+            <h1>Zensui Jambhala</h1>
+            <p>Where the sound of flowing rivers, misty hills, and warm Himalayan hospitality come together to create an unforgettable mountain escape.</p>
+            <div class="hero-buttons">
+                <a href="rooms.html" class="cta-btn">Book Now</a>
+                <a href="gallery.html" class="cta-btn secondary">View Gallery</a>
             </div>
-        </section>
+        </div>
+        <div class="hero-image">
+            <img src="hero-banner.jpg" alt="Zensui Jambhala Resort">
+        </div>
+    </div>
+</section>
+
+
 
         <!-- Nearby Attractions Section -->
         <section id="attractions">
@@ -1371,6 +1417,8 @@
             </div>
         </section>
 
+        <script src="https://elfsightcdn.com/platform.js" async></script>
+<div class="elfsight-app-881f81c4-6801-427f-b28e-30612167cca6" data-elfsight-app-lazy></div>
         <!-- Experiences Section -->
 
 
@@ -1488,7 +1536,7 @@
                     </li>
                     <li>
                         <div class="icon">📞</div>
-                        <div>+91 891-8323185</div>
+                        <div>+91 99327 17078</div>
                     </li>
                     <li>
                         <div class="icon">✉️</div>
@@ -1510,13 +1558,13 @@
 
     <!-- Floating Call & WhatsApp Buttons -->
     <div class="floating-buttons">
-        <a class="call-btn" href="tel:+918918323185" title="Call Now">
+        <a class="call-btn" href="tel:+919932717078" title="Call Now">
             <svg fill="none" viewBox="0 0 24 24">
                 <path fill="#fff" d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 01.91-.27c1 .22 2.07.34 3.17.34a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.1.12 2.17.34 3.17a1 1 0 01-.27.91l-2.2 2.2z"/>
             </svg>
             <span>Call Now</span>
         </a>
-        <a class="wa-btn" href="https://wa.me/918918323185" title="WhatsApp">
+        <a class="wa-btn" href="https://wa.me/9932717078" title="WhatsApp">
             <svg viewBox="0 0 32 32">
                 <path fill="#fff" d="M16 3C9.373 3 4 8.373 4 15c0 2.65.87 5.1 2.36 7.1L4 29l7.18-2.31A12.93 12.93 0 0116 27c6.627 0 12-5.373 12-12S22.627 3 16 3zm0 22c-1.77 0-3.45-.46-4.91-1.26l-.35-.2-4.27 1.37 1.4-4.15-.22-.36A9.93 9.93 0 016 15c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10zm5.2-7.6c-.28-.14-1.65-.81-1.9-.9-.25-.09-.43-.14-.61.14-.18.28-.7.9-.86 1.08-.16.18-.32.2-.6.07-.28-.14-1.18-.44-2.25-1.4-.83-.74-1.39-1.65-1.55-1.93-.16-.28-.02-.43.12-.57.13-.13.28-.32.42-.48.14-.16.18-.28.28-.46.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.01-.22-.53-.45-.46-.61-.47-.16-.01-.34-.01-.52-.01-.18 0-.48.07-.73.34-.25.27-.96.94-.96 2.3s.98 2.67 1.12 2.85c.14.18 1.93 2.95 4.68 4.02.65.28 1.16.45 1.56.58.65.21 1.24.18 1.7.11.52-.08 1.65-.67 1.88-1.32.23-.65.23-1.2.16-1.32-.07-.12-.25-.18-.53-.32"/>
             </svg>
@@ -1585,6 +1633,18 @@
                 toggleMenu();
             }
         });
+
+        const bgSlides = document.querySelectorAll('.hero-bg-slide');
+        let currentSlide = 0;
+
+        function nextSlide() {
+           bgSlides[currentSlide].classList.remove('active');
+           currentSlide = (currentSlide + 1) % bgSlides.length;
+           bgSlides[currentSlide].classList.add('active');
+       }
+
+    // Change slide every 4 seconds
+        setInterval(nextSlide, 4000);
     </script>
 </body>
 </html>
