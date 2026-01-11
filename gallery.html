@@ -1283,6 +1283,11 @@
             z-index: 1000;
         }
 
+        /* Hide the footer while the gallery modal is open */
+        body.gallery-modal-open footer {
+            display: none !important;
+        }
+
         .gallery-modal-info.show {
             display: block;
         }
@@ -1636,13 +1641,33 @@
                   
 
                   
-
+<div class="gallery-item" data-image-url="WhatsApp Image 2026-01-10 at 6.02.09 PM.jpeg">
+                        <div class="gallery-item-image"><img src="WhatsApp Image 2026-01-10 at 6.02.09 PM.jpeg" alt="" loading="lazy"></div>
+                        <div class="gallery-view-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></div>
+                    </div>
                    
 
 
-                  
-
-                   
+                    <div class="gallery-item" data-image-url="mola.jpeg">
+                        <div class="gallery-item-image"><img src="mola.jpeg" alt="" loading="lazy"></div>
+                        <div class="gallery-view-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></div>
+                    </div>
+                       <div class="gallery-item" data-image-url="WhatsApp Image 2026-01-10 at 6.02.06 PM.jpeg">
+                        <div class="gallery-item-image"><img src="WhatsApp Image 2026-01-10 at 6.02.06 PM.jpeg" alt="" loading="lazy"></div>
+                        <div class="gallery-view-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></div>
+                    </div>
+                    <div class="gallery-item" data-image-url="WhatsApp Image 2026-01-10 at 6.02.05 PM.jpeg">
+                        <div class="gallery-item-image"><img src="WhatsApp Image 2026-01-10 at 6.02.05 PM.jpeg" alt="" loading="lazy"></div>
+                        <div class="gallery-view-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></div>
+                    </div>
+                    <div class="gallery-item" data-image-url="WhatsApp Image 2026-01-10 at 6.02.03 PM.jpeg">
+                        <div class="gallery-item-image"><img src="WhatsApp Image 2026-01-10 at 6.02.03 PM.jpeg" alt="" loading="lazy"></div>
+                        <div class="gallery-view-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></div>
+                    </div>         
+                    <div class="gallery-item" data-image-url="WhatsApp Image 2026-01-10 at 6.02.07 PM.jpeg">
+                        <div class="gallery-item-image"><img src="WhatsApp Image 2026-01-10 at 6.02.07 PM.jpeg" alt="" loading="lazy"></div>
+                        <div class="gallery-view-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg></div>
+                    </div>                  
 
                 </div>
 
@@ -1953,6 +1978,8 @@
             // Lock page scroll and show modal
             lockPageScroll();
             modal.classList.add('active');
+            // hide footer and other page chrome while modal is open
+            document.body.classList.add('gallery-modal-open');
 
             // Prevent touchmove on modal background while open
             modal.addEventListener('touchmove', preventTouch, { passive: false });
@@ -1965,6 +1992,8 @@
         function closeModal() {
             modal.classList.remove('active');
             // Restore page scroll and remove touch blocker
+            // show footer again
+            document.body.classList.remove('gallery-modal-open');
             modal.removeEventListener('touchmove', preventTouch, { passive: false });
             unlockPageScroll();
         }

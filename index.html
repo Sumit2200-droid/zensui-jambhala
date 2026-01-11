@@ -1300,6 +1300,174 @@
         display: block;
        }
     }
+    /* PROFESSIONAL CAROUSEL TESTIMONIALS */
+#guest-diary {
+    background: linear-gradient(135deg, #f8f9fa 0%, var(--cream) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.carousel-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    padding: 0 70px;
+}
+
+.carousel-wrapper {
+    overflow: hidden;
+    border-radius: 20px;
+    position: relative;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    gap: 30px;
+}
+
+.testimonial-slide {
+    min-width: calc(33.333% - 20px);
+    flex-shrink: 0;
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: none;
+    transition: all 0.4s ease;
+}
+
+.testimonial-slide:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px rgba(11, 59, 44, 0.18);
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 177.78%; /* 9:16 aspect ratio */
+    background: linear-gradient(135deg, #e8e8e8 0%, #d0d0d0 100%);
+    overflow: hidden;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.carousel-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 55px;
+    height: 55px;
+    background: linear-gradient(135deg, var(--deep-green), var(--light-green));
+    border: none;
+    border-radius: 50%;
+    color: var(--white);
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(11, 59, 44, 0.3);
+}
+
+.carousel-nav:hover {
+    background: linear-gradient(135deg, var(--gold), #E5C158);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+.carousel-nav:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.carousel-nav.prev {
+    left: 0;
+}
+
+.carousel-nav.next {
+    right: 0;
+}
+
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 40px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(11, 59, 44, 0.2);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+}
+
+.dot:hover {
+    background: rgba(11, 59, 44, 0.4);
+    transform: scale(1.2);
+}
+
+.dot.active {
+    background: linear-gradient(135deg, var(--deep-green), var(--light-green));
+    width: 32px;
+    border-radius: 6px;
+}
+
+.carousel-counter {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 1rem;
+    color: var(--deep-green);
+    font-weight: 600;
+}
+
+.carousel-counter .current {
+    color: var(--gold);
+    font-size: 1.3rem;
+}
+
+/* Responsive Carousel */
+@media (max-width: 1024px) {
+    .testimonial-slide {
+        min-width: calc(50% - 15px);
+    }
+}
+
+@media (max-width: 768px) {
+    .testimonial-slide {
+        min-width: calc(100% - 20px);
+    }
+    .carousel-container {
+        padding: 0 50px;
+    }
+    .carousel-nav {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-container {
+        padding: 0 40px;
+    }
+    .carousel-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+}
     </style>
     <link rel="icon" href="/favicon.png" type="image/png">
 
@@ -1426,14 +1594,19 @@
 
 
         <!-- Guest Testimonials (YouTube Shorts) -->
-        <section id="guest-diary">
-            <h2 class="section-title">Guest Testimonials</h2>
-            <p class="section-subtitle">Watch what our guests say about their stay</p>
-            
-            <div class="shorts-grid">
-                <!-- YouTube Short 1 -->
-                <div class="short-card">
-                    <div class="short-container"> 
+<!-- Guest Testimonials (YouTube Shorts) -->
+<section id="guest-diary">
+    <h2 class="section-title">Guest Testimonials</h2>
+    <p class="section-subtitle">Watch what our guests say about their stay</p>
+    
+    <div class="carousel-container">
+        <button class="carousel-nav prev" aria-label="Previous">‹</button>
+        
+        <div class="carousel-wrapper">
+            <div class="carousel-track" id="carouselTrack">
+                <!-- Slide 1 -->
+                <div class="testimonial-slide">
+                    <div class="video-wrapper">
                         <iframe 
                             src="https://www.youtube.com/embed/fS8QOPsCs9Q" 
                             title="Guest Testimonial 1"
@@ -1441,15 +1614,11 @@
                             allowfullscreen>
                         </iframe>
                     </div>
-                    <!-- <div class="short-info">
-                        <h3>Amazing Experience</h3>
-                        <p class="short-date">Guest Testimonial</p>
-                    </div> -->
                 </div>
-
-                <!-- YouTube Short 2 -->
-                <div class="short-card">
-                    <div class="short-container">
+                
+                <!-- Slide 2 -->
+                <div class="testimonial-slide">
+                    <div class="video-wrapper">
                         <iframe 
                             src="https://www.youtube.com/embed/8yLDSzfywRE" 
                             title="Guest Testimonial 2"
@@ -1457,29 +1626,67 @@
                             allowfullscreen>
                         </iframe>
                     </div>
-                    <!-- <div class="short-info">
-                        <h3>Peaceful Retreat</h3>
-                        <p class="short-date">Guest Testimonial</p>
-                    </div> -->
                 </div>
-
-                <!-- YouTube Short 3 -->
-                <div class="short-card">
-                    <div class="short-container">
+                
+                <!-- Slide 3 -->
+                <div class="testimonial-slide">
+                    <div class="video-wrapper">
                         <iframe 
-                            src="https://www.youtube.com/embed/3zjdD7-b6hw" 
+                            src="https://www.youtube.com/embed/XZPtimi9fM0" 
                             title="Guest Testimonial 3"
                             allow="autoplay; encrypted-media" 
                             allowfullscreen>
                         </iframe>
                     </div>
-                    <!-- <div class="short-info">
-                        <h3>Unforgettable Stay</h3>
-                        <p class="short-date">Guest Testimonial</p>
-                    </div> -->
+                </div>
+                
+                <!-- Slide 4 -->
+                <div class="testimonial-slide">
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="https://www.youtube.com/embed/3zjdD7-b6hw" 
+                            title="Guest Testimonial 4"
+                            allow="autoplay; encrypted-media" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+                
+                <!-- Slide 5 -->
+                <div class="testimonial-slide">
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="https://www.youtube.com/embed/rniDsKJ6tfc" 
+                            title="Guest Testimonial 5"
+                            allow="autoplay; encrypted-media" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+                
+                <!-- Slide 6 -->
+                <div class="testimonial-slide">
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="https://www.youtube.com/embed/dsJvkyBBOaI" 
+                            title="Guest Testimonial 6"
+                            allow="autoplay; encrypted-media" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+        
+        <button class="carousel-nav next" aria-label="Next">›</button>
+        
+        <div class="carousel-dots" id="carouselDots"></div>
+        
+        <div class="carousel-counter">
+            <span class="current">1</span> / <span class="total">6</span>
+        </div>
+    </div>
+</section>
     </main>
 
     <footer>
@@ -1648,6 +1855,152 @@
 
     // Change slide every 4 seconds
         setInterval(nextSlide, 4000);
+
+        // Professional Carousel Script
+(function() {
+    const track = document.getElementById('carouselTrack');
+    const slides = document.querySelectorAll('.testimonial-slide');
+    const dotsContainer = document.getElementById('carouselDots');
+    const prevBtn = document.querySelector('.carousel-nav.prev');
+    const nextBtn = document.querySelector('.carousel-nav.next');
+    const currentCounter = document.querySelector('.carousel-counter .current');
+    const totalCounter = document.querySelector('.carousel-counter .total');
+    
+    let currentIndex = 0;
+    let slidesToShow = 3;
+    let autoplayInterval;
+    
+    // Update slides to show based on screen width
+    function updateSlidesToShow() {
+        if (window.innerWidth <= 768) {
+            slidesToShow = 1;
+        } else if (window.innerWidth <= 1024) {
+            slidesToShow = 2;
+        } else {
+            slidesToShow = 3;
+        }
+    }
+    
+    // Create dot indicators
+    function createDots() {
+        dotsContainer.innerHTML = '';
+        const numDots = Math.ceil(slides.length / slidesToShow);
+        for (let i = 0; i < numDots; i++) {
+            const dot = document.createElement('button');
+            dot.classList.add('dot');
+            if (i === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(i * slidesToShow));
+            dotsContainer.appendChild(dot);
+        }
+    }
+    
+    // Update carousel position and indicators
+    function updateCarousel() {
+        const slideWidth = slides[0].offsetWidth + 30; // 30px gap
+        track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+        
+        // Update dots
+        document.querySelectorAll('.dot').forEach((dot, index) => {
+            dot.classList.toggle('active', Math.floor(currentIndex / slidesToShow) === index);
+        });
+        
+        // Update counter
+        currentCounter.textContent = currentIndex + 1;
+        totalCounter.textContent = slides.length;
+    }
+    
+    // Go to specific slide
+    function goToSlide(index) {
+        currentIndex = Math.max(0, Math.min(index, slides.length - slidesToShow));
+        updateCarousel();
+        resetAutoplay();
+    }
+    
+    // Next slide
+    function nextSlide() {
+        if (currentIndex < slides.length - slidesToShow) {
+            currentIndex++;
+        } else {
+            currentIndex = 0; // Loop back to start
+        }
+        updateCarousel();
+    }
+    
+    // Previous slide
+    function prevSlide() {
+        if (currentIndex > 0) {
+            currentIndex--;
+        } else {
+            currentIndex = slides.length - slidesToShow; // Loop to end
+        }
+        updateCarousel();
+    }
+    
+    // Start autoplay
+    function startAutoplay() {
+        autoplayInterval = setInterval(nextSlide, 5000); // Change every 5 seconds
+    }
+    
+    // Reset autoplay timer
+    function resetAutoplay() {
+        clearInterval(autoplayInterval);
+        startAutoplay();
+    }
+    
+    // Event listeners
+    prevBtn.addEventListener('click', () => {
+        prevSlide();
+        resetAutoplay();
+    });
+    
+    nextBtn.addEventListener('click', () => {
+        nextSlide();
+        resetAutoplay();
+    });
+    
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        updateSlidesToShow();
+        createDots();
+        currentIndex = Math.min(currentIndex, slides.length - slidesToShow);
+        updateCarousel();
+    });
+    
+    // Touch/Swipe support for mobile
+    let startX = 0;
+    let isDragging = false;
+    
+    track.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+    });
+    
+    track.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        const currentX = e.touches[0].clientX;
+        const diff = startX - currentX;
+        
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+            isDragging = false;
+            resetAutoplay();
+        }
+    });
+    
+    track.addEventListener('touchend', () => {
+        isDragging = false;
+    });
+    
+    // Initialize carousel
+    updateSlidesToShow();
+    createDots();
+    updateCarousel();
+    startAutoplay();
+})();
     </script>
 </body>
 </html>
