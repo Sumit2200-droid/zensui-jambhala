@@ -1322,8 +1322,9 @@
 
 .carousel-track {
     display: flex;
-    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: transform 0.45s cubic-bezier(0.22, 0.8, 0.12, 1);
     gap: 30px;
+    will-change: transform;
 }
 
 .testimonial-slide {
@@ -1896,25 +1897,26 @@
     // Update carousel position and indicators
     function updateCarousel() {
         const slideWidth = slides[0].offsetWidth + 30; // 30px gap
-        track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
-        
+        const translateX = -currentIndex * slideWidth;
+        track.style.transform = `translate3d(${translateX}px, 0, 0)`;
+
         // Update dots
         document.querySelectorAll('.dot').forEach((dot, index) => {
             dot.classList.toggle('active', Math.floor(currentIndex / slidesToShow) === index);
         });
-        
+
         // Update counter
         currentCounter.textContent = currentIndex + 1;
         totalCounter.textContent = slides.length;
     }
-    
+
     // Go to specific slide
     function goToSlide(index) {
         currentIndex = Math.max(0, Math.min(index, slides.length - slidesToShow));
         updateCarousel();
         resetAutoplay();
     }
-    
+
     // Next slide
     function nextSlide() {
         if (currentIndex < slides.length - slidesToShow) {
@@ -1924,7 +1926,7 @@
         }
         updateCarousel();
     }
-    
+
     // Previous slide
     function prevSlide() {
         if (currentIndex > 0) {
@@ -1934,29 +1936,30 @@
         }
         updateCarousel();
     }
-    
-    // Start autoplay
+
+    // Start autoplay (clear first to avoid duplicates)
     function startAutoplay() {
-        autoplayInterval = setInterval(nextSlide, 5000); // Change every 5 seconds
+        clearInterval(autoplayInterval);
+        autoplayInterval = setInterval(nextSlide, 4500); // Change every 4.5 seconds
     }
-    
+
     // Reset autoplay timer
     function resetAutoplay() {
         clearInterval(autoplayInterval);
         startAutoplay();
     }
-    
+
     // Event listeners
     prevBtn.addEventListener('click', () => {
         prevSlide();
         resetAutoplay();
     });
-    
+
     nextBtn.addEventListener('click', () => {
         nextSlide();
         resetAutoplay();
     });
-    
+
     // Handle window resize
     window.addEventListener('resize', () => {
         updateSlidesToShow();
@@ -1964,34 +1967,47 @@
         currentIndex = Math.min(currentIndex, slides.length - slidesToShow);
         updateCarousel();
     });
-    
-    // Touch/Swipe support for mobile
+
+    // Pause autoplay on hover to prevent janky auto movements
+    const carouselContainerEl = document.querySelector('.carousel-container');
+    if (carouselContainerEl) {
+        carouselContainerEl.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
+        carouselContainerEl.addEventListener('mouseleave', () => startAutoplay());
+    }
+
+    // Improved Touch/Swipe support for mobile (dragging with smooth release)
     let startX = 0;
     let isDragging = false;
-    
+    let prevTranslate = 0;
+
     track.addEventListener('touchstart', (e) => {
         startX = e.touches[0].clientX;
         isDragging = true;
-    });
-    
+        prevTranslate = -currentIndex * (slides[0].offsetWidth + 30);
+    }, {passive: true});
+
     track.addEventListener('touchmove', (e) => {
         if (!isDragging) return;
+        // allow vertical scroll by not preventing default here; we only apply a gentle transform
         const currentX = e.touches[0].clientX;
-        const diff = startX - currentX;
-        
-        if (Math.abs(diff) > 50) {
-            if (diff > 0) {
-                nextSlide();
-            } else {
-                prevSlide();
-            }
-            isDragging = false;
-            resetAutoplay();
-        }
-    });
-    
-    track.addEventListener('touchend', () => {
+        const diff = currentX - startX;
+        track.style.transform = `translate3d(${prevTranslate + diff}px, 0, 0)`;
+    }, {passive: true});
+
+    track.addEventListener('touchend', (e) => {
+        if (!isDragging) return;
+        const endX = (e.changedTouches && e.changedTouches[0].clientX) || startX;
+        const diff = startX - endX;
         isDragging = false;
+        const threshold = 60; // swipe threshold
+        if (diff > threshold) {
+            nextSlide();
+        } else if (diff < -threshold) {
+            prevSlide();
+        } else {
+            updateCarousel();
+        }
+        resetAutoplay();
     });
     
     // Initialize carousel
