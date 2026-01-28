@@ -1858,80 +1858,80 @@
     </div>
 
     <script>
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
-        const menuOverlay = document.getElementById('menuOverlay');
-        const body = document.body;
+      const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+const menuOverlay = document.getElementById('menuOverlay');
+const body = document.body;
 
-        function toggleMenu() {
-            menuToggle.classList.toggle('active');
-            navLinks.classList.toggle('active');
-            menuOverlay.classList.toggle('active');
-            body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+function toggleMenu() {
+    menuToggle.classList.toggle('active');
+    navLinks.classList.toggle('active');
+    menuOverlay.classList.toggle('active');
+    body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+}
+
+menuToggle.addEventListener('click', toggleMenu);
+menuOverlay.addEventListener('click', toggleMenu);
+
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        if (navLinks.classList.contains('active')) {
+            toggleMenu();
         }
+    });
+});
 
-        menuToggle.addEventListener('click', toggleMenu);
-        menuOverlay.addEventListener('click', toggleMenu);
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    const currentScroll = window.pageYOffset;
 
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (navLinks.classList.contains('active')) {
-                    toggleMenu();
-                }
+    if (currentScroll > 100) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+
+    lastScroll = currentScroll;
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+
+        e.preventDefault();
+        const target = document.querySelector(href);
+
+        if (target) {
+            const offsetTop = target.offsetTop - 80;
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
             });
-        });
+        }
+    });
+});
 
-        let lastScroll = 0;
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            const currentScroll = window.pageYOffset;
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 968 && navLinks.classList.contains('active')) {
+        toggleMenu();
+    }
+});
 
-            if (currentScroll > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
+const bgSlides = document.querySelectorAll('.hero-bg-slide');
+let currentSlide = 0;
 
-            lastScroll = currentScroll;
-        });
+function nextSlide() {
+   bgSlides[currentSlide].classList.remove('active');
+   currentSlide = (currentSlide + 1) % bgSlides.length;
+   bgSlides[currentSlide].classList.add('active');
+}
 
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                if (href === '#') return;
+// Change slide every 4 seconds
+setInterval(nextSlide, 4000);
 
-                e.preventDefault();
-                const target = document.querySelector(href);
-
-                if (target) {
-                    const offsetTop = target.offsetTop - 80;
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        window.addEventListener('resize', () => {
-            if (window.innerWidth > 968 && navLinks.classList.contains('active')) {
-                toggleMenu();
-            }
-        });
-
-        const bgSlides = document.querySelectorAll('.hero-bg-slide');
-        let currentSlide = 0;
-
-        function nextSlide() {
-           bgSlides[currentSlide].classList.remove('active');
-           currentSlide = (currentSlide + 1) % bgSlides.length;
-           bgSlides[currentSlide].classList.add('active');
-       }
-
-    // Change slide every 4 seconds
-        setInterval(nextSlide, 4000);
-
-        // Professional Carousel Script
+// Professional Carousel Script - AUTO-SLIDING DISABLED
 (function() {
     const track = document.getElementById('carouselTrack');
     const slides = document.querySelectorAll('.testimonial-slide');
@@ -1943,7 +1943,6 @@
     
     let currentIndex = 0;
     let slidesToShow = 3;
-    let autoplayInterval;
     
     // Update slides to show based on screen width
     function updateSlidesToShow() {
@@ -1989,7 +1988,6 @@
     function goToSlide(index) {
         currentIndex = Math.max(0, Math.min(index, slides.length - slidesToShow));
         updateCarousel();
-        resetAutoplay();
     }
 
     // Next slide
@@ -2012,27 +2010,13 @@
         updateCarousel();
     }
 
-    // Start autoplay (clear first to avoid duplicates)
-    function startAutoplay() {
-        clearInterval(autoplayInterval);
-        autoplayInterval = setInterval(nextSlide, 4500); // Change every 4.5 seconds
-    }
-
-    // Reset autoplay timer
-    function resetAutoplay() {
-        clearInterval(autoplayInterval);
-        startAutoplay();
-    }
-
     // Event listeners
     prevBtn.addEventListener('click', () => {
         prevSlide();
-        resetAutoplay();
     });
 
     nextBtn.addEventListener('click', () => {
         nextSlide();
-        resetAutoplay();
     });
 
     // Handle window resize
@@ -2043,14 +2027,7 @@
         updateCarousel();
     });
 
-    // Pause autoplay on hover to prevent janky auto movements
-    const carouselContainerEl = document.querySelector('.carousel-container');
-    if (carouselContainerEl) {
-        carouselContainerEl.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
-        carouselContainerEl.addEventListener('mouseleave', () => startAutoplay());
-    }
-
-    // Improved Touch/Swipe support for mobile (dragging with smooth release)
+    // Touch/Swipe support for mobile (dragging with smooth release)
     let startX = 0;
     let isDragging = false;
     let prevTranslate = 0;
@@ -2063,7 +2040,6 @@
 
     track.addEventListener('touchmove', (e) => {
         if (!isDragging) return;
-        // allow vertical scroll by not preventing default here; we only apply a gentle transform
         const currentX = e.touches[0].clientX;
         const diff = currentX - startX;
         track.style.transform = `translate3d(${prevTranslate + diff}px, 0, 0)`;
@@ -2082,14 +2058,14 @@
         } else {
             updateCarousel();
         }
-        resetAutoplay();
     });
     
     // Initialize carousel
     updateSlidesToShow();
     createDots();
     updateCarousel();
-    startAutoplay();
+    
+    // AUTO-SLIDING REMOVED - Carousel now only moves when user clicks arrows or swipes
 })();
     </script>
 </body>
