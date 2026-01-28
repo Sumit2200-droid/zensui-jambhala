@@ -709,6 +709,25 @@
                 toggleMenu();
             }
         });
+
+        // Prevent multiple videos from playing simultaneously and disable autoplay
+        document.addEventListener('DOMContentLoaded', () => {
+            const videos = document.querySelectorAll('.video-media video');
+            
+            videos.forEach(video => {
+                // Ensure no autoplay
+                video.autoplay = false;
+                
+                // Pause all other videos when one starts playing
+                video.addEventListener('play', () => {
+                    videos.forEach(otherVideo => {
+                        if (otherVideo !== video && !otherVideo.paused) {
+                            otherVideo.pause();
+                        }
+                    });
+                });
+            });
+        });
     </script>
 </body>
 
